@@ -59,6 +59,35 @@ paths:
       summary: List of all pet
       tags:
       - pet
+    post:
+      consumes:
+      - application/json
+      description: Create a new pet with the given information
+      parameters:
+      - description: Pet object that needs to be added to the store
+        in: body
+        name: pet
+        required: true
+        schema:
+          $ref: '#/definitions/main.Pet'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.Pet'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/main.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/main.HTTPError'
+      summary: Create a new pet
+      tags:
+      - pet
 schemes:
 - http
 swagger: "2.0"
