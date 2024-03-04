@@ -18,7 +18,7 @@
         },
         "version": "1.0"
     },
-    "host": "localhost:1323",
+    "host": "localhost:8080",
     "basePath": "/",
     "paths": {
         "/pets": {
@@ -52,6 +52,50 @@
                     },
                     "404": {
                         "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/main.HTTPError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/main.HTTPError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new pet with the given information",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pet"
+                ],
+                "summary": "Create a new pet",
+                "parameters": [
+                    {
+                        "description": "Pet object that needs to be added to the store",
+                        "name": "pet",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.Pet"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/main.Pet"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
                         "schema": {
                             "$ref": "#/definitions/main.HTTPError"
                         }
