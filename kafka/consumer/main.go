@@ -3,13 +3,15 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
 	"time"
 
 	"github.com/segmentio/kafka-go"
 )
 
 func main() {
-	kConf := kafkaReader("message-to-say", "client-1")
+	group := os.Getenv("CONGROUP")
+	kConf := kafkaReader("message-to-say", group)
 	reader := kafka.NewReader(kConf)
 	defer reader.Close()
 
